@@ -119,7 +119,10 @@ namespace SimpleXlsx
             std::string TmpString = getenv( "USERNAME" );
             m_UserName = _tstring( TmpString.begin(), TmpString.end() );
 #else
-            m_UserName = getenv( "USERNAME" );
+            const char* tmp = getenv( "USERNAME" );
+            if(tmp == nullptr)
+                tmp = "";
+            m_UserName = tmp;
 #endif
 
 #endif
